@@ -1,5 +1,5 @@
 #pragma once
-void einlesen(); 
-void kartesischZuPolar(float a, float b);
-void polarZuKartesisch(float phi, float radius);
-void ausgeben();
+void einlesen(float dataArray[]);
+void kartesischZuPolar(float dataArray[]);
+void polarZuKartesisch(float dataArray[]);
+void ausgeben(float dataArray[]);

@@ -11,22 +11,23 @@
 /// sowie deren Summe ausgibt
 /// </summary>
 Teilaufgabe_1() {
-	int array[ARRAY_LENGTH] = { 1,2,5,1,2 };
-	int LENGTH = LEN(array);
+	int array[ARRAY_LENGTH];
 	//Eingabe
-	for (size_t i = 0; i < LENGTH; i++)
+	for (size_t i = 0; i < ARRAY_LENGTH; i++)
 	{
 		printf("Bitte geben Sie eine Zahl ein: ");
 		scanf_s("%d", &array[i]);
 	}
 	int sum = 0;
 	//Ausgabe
-	for (size_t i = 0; i < LENGTH; i++)
+	for (size_t i = 0; i < ARRAY_LENGTH; i++)
 	{
-		printf("Zelle [%d]:\t%d\n",(int) i, array[i]);
+		printf("Zelle [%d]:\t%d\n", (int)i, array[i]);
 		sum += array[i];
 	}
-	printf("Summe des Arrays:\t%d", sum);
+	printf("Summe des Arrays:\t%d\n", sum);
+
+	printf("Programm Ende.\n");
 }
 /// <summary>
 /// Schreibe ein Programm, welches eine durch die Arraygröße festgelegte Anzahl an 
@@ -35,16 +36,14 @@ Teilaufgabe_1() {
 /// </summary>
 Teilaufgabe_2() {
 	int array[ARRAY_LENGTH];
-	int LENGTH = LEN(array);
-	int arrLength = sizeof(array) / sizeof(array[0]);
-	for (size_t i = 0; i < arrLength; i++)
+	for (size_t i = 0; i < ARRAY_LENGTH; i++)
 	{
 		printf("Bitte geben Sie eine Zahl fuer Zelle[%d] ein:\t", (int)i);
 		scanf_s("%d", &array[i]);
 	}
 	//Prüfen ob Zahlen aufsteigend sortiert sind
 	int watchdog = 0;
-	for (int i = 0; i < arrLength - 1; i++)
+	for (int i = 0; i < ARRAY_LENGTH - 1; i++)
 	{
 		if (array[i] > array[i + 1]) {
 			printf("Die Zahlen sind nicht aufsteigend sortiert.\n");
@@ -59,7 +58,7 @@ Teilaufgabe_2() {
 	if (watchdog == 1) {
 		printf("Die Zahlen sind aufsteigend sortiert.\n");
 	}
-	printf("Programm Ende");
+	printf("Programm Ende\n");
 }
 /// <summary>
 /// Schreibe ein Programm, welches eine durch die Arraygr¨oße festgelegte Anzahl an Zahlen vom 
@@ -68,22 +67,22 @@ Teilaufgabe_2() {
 /// </summary>
 Teilaufgabe_3() {
 	int array[ARRAY_LENGTH];
-	int LENGTH = LEN(array);
-	for (size_t i = 0; i < LENGTH; i++)
+	for (size_t i = 0; i < ARRAY_LENGTH; i++)
 	{
 		printf("Bitte geben Sie eine Zahl fuer Zelle[%d] ein:\t", (int)i);
 		scanf_s("%d", &array[i]);
 	}
 	int arrayDiff[5];
-	for (size_t i = 0; i < LENGTH-1; i++)
+	for (size_t i = 0; i < ARRAY_LENGTH - 1; i++)
 	{
 		arrayDiff[i] = abs(array[i] - array[i + 1]);
 	}
 	//Ausgabe
-	int array_diff_length = sizeof(arrayDiff) / sizeof(arrayDiff[0]);
-	for (size_t i = 0; i < array_diff_length-1; i++)
+	int array_diff_length = LEN(arrayDiff); sizeof(arrayDiff) / sizeof(arrayDiff[0]);
+	for (size_t i = 0; i < array_diff_length - 1; i++)
 	{
 		printf("Differenz zwischen Zelle [%d] & [%d] betraegt:\t%d\n", (int)i, (int)(i + 1), arrayDiff[i]);
 	}
+	printf("Programm Ende.\n");
 }
 

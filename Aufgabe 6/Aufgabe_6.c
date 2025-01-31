@@ -39,14 +39,18 @@ void Teilaufgabe_1() {
 	//Ausgabe
 	printArrayDiff(arrayDiff);
 }
+
 void Teilaufgabe_2() {
 	//Polarform in Kartesisch umwandeln und umgekehrt mit Hilfe von Funktionen
-	float dataArray[] = { 0.0,0.0,0.0,0.0 };		//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, phi, radius;
+	
+	//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, radius, phi;
+	float dataArray[] = { 0.0,0.0,0.0,0.0,0.0};
 	einlesen(dataArray);
 	//Polar in Kartesisch
-	kartesischZuPolar(dataArray[0], dataArray[1]);
-	//Kartesisch in Polar
-	polarZuKartesisch(dataArray[2], dataArray[3]);
+	kartesischZuPolar(dataArray);
+	polarZuKartesisch(dataArray);
+	//berechnen(dataArray);
+	ausgeben(dataArray);
 
 }
 void Teilaufgabe_3() {

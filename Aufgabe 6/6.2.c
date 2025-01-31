@@ -5,60 +5,63 @@
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
+
+//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, radius, phi;
 void einlesen(float dataArray[]) {
 	printf("Welche Koordinaten sollen umgewandelt werden?\n\nKartesische in Polarkoordinaten [1]\nPolarkoordinaten in kartesische [2]\n");
-	int choice;	
-	scanf_s("%d", &choice);
-	switch (choice) {
-	case 1: //Polar in kartesisch
+	int helper = 0;
+	scanf_s("%fl", &dataArray[4]);
+	if (dataArray[4] == 1) {
+		//Polar in kartesisch
 		printf("Radius und Winkel eingeben:\n[r],[phi]\n");
-		scanf_s("%f,%f", dataArray[2], dataArray[3]);
-		printf("%.2f", dataArray[2]);
-		break;
-	case 2:
-		printf("X und Y Koordinaten eingeben:\n[x],[y]\n");
-		scanf_s("%f,%f", dataArray[0], dataArray[1]);
-		printf("\n|z| = a + b*i =  %.2f + %.2f*i\n", dataArray[0], dataArray[1]);
-		break;
-	default:
-		printf("Eingabe ungueltig");
-		break;
+		scanf_s("%f,%f", &dataArray[2], &dataArray[3]);
+		//printf("Eingabe war: %.2f,%.2f", dataArray[2], dataArray[3]);
 	}
-}
-
-void kartesischZuPolar(float a, float b ) {
-	//kartesisch in Polar
-	float radius, phi = 0.0;
-	//Mathematik
-	//Radius bestimmen
-	radius = sqrtf(pow(a, 2.0f) + pow(b, 2.0));
-	//Winkel bestimmen
-	//Prüfen ob a oder b gleich null um berechnung zu überspringen
-	if (a == 0.0f || b == 0.0f) {
-		if (a == 0.0f && b > 0.0f) phi = M_PI / 2.0f;			//Rein imaginär-positiv
-		else if (a == 0.0f && b < 0.0f) phi = M_PI * 3 / 2.0f;	//Rein imaginär-negativ
-		else if (a == 0.0f && b == 0.0f) phi = 0.0f;			//Ursprung
-		else if (a > 0.0f && b == 0.0f) phi = 0.0f;				//Rein reell-positiv
-		else if (a < 0.0f && b == 0.0f) phi = M_PI;				//Rein reell-negativ			
+	else if (dataArray[4] == 2) {
+		printf("X und Y Koordinaten eingeben:\n[x],[y]\n");
+		scanf_s("%f,%f", &dataArray[0], &dataArray[1]);
+		//printf("\n|z| = a + b*i =  %.2f + %.2f*i\n", dataArray[0], dataArray[1]);
 	}
 	else {
-		//Winkel berechnen und nach Quadranten korrigieren
-		phi = atanf(b / a);						//Quadrant I
-		if (a > 0.0f && b >= 0.0f) phi + 2 * M_PI;	//Quadrant IV
-		else if (a < 0.0f) phi + M_PI;			//Quadrant II oder III
+		printf("Eingabe ungültig.\n");
 	}
-	//Ergebnisausgabe
-	printf("z = %.2f * cos(%.2f) + i * sin(%.2f)", radius, phi, phi);
+}
 
+void kartesischZuPolar(float dataArray[]) {
+	//Radius bestimmen
+	dataArray[2] = sqrtf(pow(dataArray[0], 2.0f) + pow(dataArray[1], 2.0));
+	//Winkel bestimmen
+	//Prüfen ob a oder b gleich null um Berechnung zu überspringen
+	if (dataArray[0] == 0.0f || dataArray[1] == 0.0f) {
+		if (dataArray[0] == 0.0f && dataArray[1] > 0.0f) dataArray[3] = M_PI / 2.0f;			//Rein imaginär-positiv
+		else if (dataArray[0] == 0.0f && dataArray[1] < 0.0f) dataArray[3] = M_PI * 3 / 2.0f;	//Rein imaginär-negativ
+		else if (dataArray[0] == 0.0f && dataArray[1] == 0.0f) dataArray[3] = 0.0f;			//Ursprung
+		else if (dataArray[0] > 0.0f && dataArray[1] == 0.0f) dataArray[3] = 0.0f;				//Rein reell-positiv
+		else if (dataArray[0] < 0.0f && dataArray[1] == 0.0f) dataArray[3] = M_PI;				//Rein reell-negativ			
+	}
+	else {
+		//Ansonsten Winkel berechnen und nach Quadranten korrigieren
+		dataArray[3] = atanf(dataArray[1] / dataArray[0]);						//Quadrant I
+		if (dataArray[0] > 0.0f && dataArray[1] >= 0.0f) dataArray[3] + 2 * M_PI;	//Quadrant IV
+		else if (dataArray[0] < 0.0f) dataArray[3] + M_PI;			//Quadrant II oder III
+	}
 }
-void polarZuKartesisch(float phi, float radius) { 
-		  float x, y = 0.0;
-	
-	//Mathematik bla bla
-	x = radius * cos(phi);
-	y = radius * sin(phi);
+void polarZuKartesisch(float dataArray[]) {
+	//Mathematik
+	//a = z * cos(phi)
+	//b = z * sin(phi)
+	dataArray[0] = dataArray[2] * cos(dataArray[3]);
+	dataArray[1] = dataArray[2] * sin(dataArray[3]);
+	}
+void ausgeben(float dataArray[]) {
 	//Ergebnisausgabe
-	printf("X-Koordinate:\t%f\nY-Koordinate:\t%f", x, y);
+	if (dataArray[4] == 1) {
+		//Polarausgabe
+		printf("z = %.2f * cos(%.2f) + i * sin(%.2f)\n", dataArray[2], dataArray[3], dataArray[3]);
+	}
+	else {
+		//Kartesische Ausgabe
+		printf("X-Koordinate:\t%f\nY-Koordinate:\t%f\n", dataArray[0], dataArray[1]);
+	}
 }
-void ausgeben(){}
 
