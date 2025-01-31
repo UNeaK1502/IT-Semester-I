@@ -1,12 +1,14 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <math.h>
 #include "6.2.h"
+#include "6.3.h"
 
 //Pi manuell definieren- Thanks ChatGPT
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
 #define LENGTH		5
+#define LENGTH_CHAR_ARRAY 100	
 
 #define LEN(x)		sizeof(x) / sizeof(x[0]);	
 
@@ -18,20 +20,20 @@ void getInput(int array[]) {
 	}
 }
 void calculateArrayDiff(int array[], int arrayDiff[]) {
-	for (size_t i = 0; i < LENGTH-1; i++)
+	for (size_t i = 0; i < LENGTH - 1; i++)
 	{
 		arrayDiff[i] = abs(array[i] - array[i + 1]);
 	}
 }
 void printArrayDiff(int array[]) {
-	for (size_t i = 0; i < LENGTH-1; i++)
+	for (size_t i = 0; i < LENGTH - 1; i++)
 	{
 		printf("Differenz zwischen Zelle [%d] & [%d] betraegt:\t%d\n", (int)i, (int)(i + 1), array[i]);
 	}
 }
 void Teilaufgabe_1() {
 	int array[LENGTH];
-	int arrayDiff[LENGTH-1];
+	int arrayDiff[LENGTH - 1];
 	//Eingabe
 	getInput(array);
 	//Berechnung
@@ -42,9 +44,9 @@ void Teilaufgabe_1() {
 
 void Teilaufgabe_2() {
 	//Polarform in Kartesisch umwandeln und umgekehrt mit Hilfe von Funktionen
-	
+
 	//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, radius, phi;
-	float dataArray[] = { 0.0,0.0,0.0,0.0,0.0};
+	float dataArray[] = { 0.0,0.0,0.0,0.0,0.0 };
 	einlesen(dataArray);
 	//Polar in Kartesisch
 	kartesischZuPolar(dataArray);
@@ -53,7 +55,18 @@ void Teilaufgabe_2() {
 	ausgeben(dataArray);
 
 }
+//----------------------------------------------------------
+
+/// <summary>
+/// Schreibe ein Programm, welches einen String von festgelegter Maximallänge einliest und 
+/// bei Buchstaben die Groß / -Kleinschreibung vertauscht(a -> A, H -> h).
+/// </summary>
 void Teilaufgabe_3() {
+	char input[LENGTH_CHAR_ARRAY];
+	char output[LENGTH_CHAR_ARRAY];
+	getInputChars(input);
+	umwandeln(input, output);
+	printOutput(output);
 
 }
 void Teilaufgabe_4() {
