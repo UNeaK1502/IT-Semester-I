@@ -2,6 +2,7 @@
 #include <math.h>
 #include "6.2.h"
 #include "6.3.h"
+#include "6.4.h"
 
 //Pi manuell definieren- Thanks ChatGPT
 #ifndef M_PI
@@ -69,6 +70,22 @@ void Teilaufgabe_3() {
 	printOutput(output);
 
 }
+/// <summary>
+///Schreibe ein Programm, welches eine Zeichenkette einliest und diese in eine Zahl vom Typ unsigned
+/// int konvertiert("1337" → 1337).Ist ein unültiges Zeichen(keine Ziffer) in der Eingabe enthalten,
+/// soll eine Fehlermeldung ausgegeben werden.Welche Möglichkeiten zur Kategorisierung der Zeichen
+/// existieren ? (Tipp: C - Standardbibliothek verwenden)
+/// Die Konvertierung ist in einer eigenen Funktion zu implementieren, die zur¨uck gibt, ob die Konvertierung
+/// erfolgreich war.
+/// </summary>
 void Teilaufgabe_4() {
-
+	char input[LENGTH_CHAR_ARRAY];
+	getInputChars(input);
+	unsigned int output = 0;
+	if (convertStringToUInt(input, &output)) {
+		printf("Die Konvertierung war erfolgreich. Die Zahl lautet: %d\n", output);
+	}
+	else {
+		printf("Die Konvertierung war nicht erfolgreich. Bitte geben Sie nur Zahlen ein.\n");
+	}
 }
