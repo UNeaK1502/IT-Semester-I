@@ -13,17 +13,14 @@ void strreverse(char* s) {
 	for (size_t i = 0; i < LENGTH_CHAR_ARRAY; i++)
 	{
 		if (s[i] == '\0') break;
-		counter ++;		//Länge von String ermitteln
+		counter++;							//Länge von String ermitteln
 	}
 	char copy[LENGTH_CHAR_ARRAY];
+	memcpy(copy, s, LENGTH_CHAR_ARRAY);		//Inhalt kopieren
 
 	for (size_t i = 0; i < counter; i++)
 	{
-		copy[i] = s[i];		//Inhalt kopieren
-	}
-	for (size_t i = 0; i < counter; i++)
-	{
-		s[i] = copy[counter-1 - i];		//Inhalt vertauschen
+		s[i] = copy[counter - 1 - i];		//Inhalt vertauschen
 	}
 }
 
