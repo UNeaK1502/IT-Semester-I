@@ -27,6 +27,9 @@
     <ClCompile Include="7.2.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="7.3.c">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Aufgabe_7.h">

@@ -41,7 +41,7 @@ int getPotenz(int digits) {
 /// <param name="values"></param>
 void ausgabeRinge(int values[])
 {
-	const char* colorCodes[10] = { "schwarz","braun","rot","orange","gelb",
+	const char *colorCodes[10] = { "schwarz","braun","rot","orange","gelb",
 											"gruen","blau","lila","grau","weiss" };
 	//Werte durchgehen
 	for (int i = 0; i < 3; i++)

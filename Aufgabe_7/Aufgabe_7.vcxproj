@@ -130,6 +130,7 @@
     <ClCompile Include="..\Aufgabe 6\Main.c" />
     <ClCompile Include="7.1.c" />
     <ClCompile Include="7.2.c" />
+    <ClCompile Include="7.3.c" />
     <ClCompile Include="Aufgabe_7.c" />
   </ItemGroup>
   <ItemGroup>
