@@ -1,5 +1,5 @@
 #pragma once
-typedef enum{
+typedef enum {
 	Rot,
 	Lila,
 	Gelb,

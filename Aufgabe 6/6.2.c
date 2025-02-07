@@ -6,7 +6,7 @@
 #define M_PI 3.14159265358979323846
 #endif
 
-//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, radius, phi;
+//Datenarray, welches als Zwischenspeicher der Methoden fungiert. a, b, radius, phi, Konvertierungsform;
 void einlesen(float dataArray[]) {
 	printf("Welche Koordinaten sollen umgewandelt werden?\n\nKartesische in Polarkoordinaten [1]\nPolarkoordinaten in kartesische [2]\n");
 	scanf_s("%f", &dataArray[4]);

@@ -13,7 +13,7 @@
 
 #define LEN(x)		sizeof(x) / sizeof(x[0]);	
 
-void getInput(int array[]) {
+void getInput(int array[]) {						//alternativ void getInput (int *array){
 	for (size_t i = 0; i < LENGTH; i++)
 	{
 		printf("Bitte geben Sie eine Zahl fuer Zelle[%d] ein:\t", (int)i);
@@ -52,7 +52,6 @@ void Teilaufgabe_2() {
 	//Polar in Kartesisch
 	kartesischZuPolar(dataArray);
 	polarZuKartesisch(dataArray);
-	//berechnen(dataArray);
 	ausgeben(dataArray);
 
 }
@@ -72,8 +71,8 @@ void Teilaufgabe_3() {
 }
 /// <summary>
 ///Schreibe ein Programm, welches eine Zeichenkette einliest und diese in eine Zahl vom Typ unsigned
-/// int konvertiert("1337" → 1337).Ist ein unültiges Zeichen(keine Ziffer) in der Eingabe enthalten,
-/// soll eine Fehlermeldung ausgegeben werden.Welche Möglichkeiten zur Kategorisierung der Zeichen
+/// int konvertiert("1337" → 1337).Ist ein ungültiges Zeichen(keine Ziffer) in der Eingabe enthalten,
+/// soll eine Fehlermeldung ausgegeben werden. Welche Möglichkeiten zur Kategorisierung der Zeichen
 /// existieren ? (Tipp: C - Standardbibliothek verwenden)
 /// Die Konvertierung ist in einer eigenen Funktion zu implementieren, die zur¨uck gibt, ob die Konvertierung
 /// erfolgreich war.

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
+
 void Teilaufgabe_1() {
 	//Farben Rot, Lila, Gelb, Blau und Grau. Implementiere
 	// eine Funktion, die eine Farbe(enum) in eine dazugeh¨orige Zeichenkette(string, z.B.”Rot“) umwandelt,
@@ -35,7 +36,7 @@ color_t color_from_string(const char* s){
 		return Blau;
 	}
 	else if (strcmp(s, "Grau") == 0) {
-		return Blau;
+		return Grau;
 	}
 	else {
 		return Grau;

@@ -25,7 +25,11 @@ int main()
 		case 3:
 			printf("Teilaufgabe 3 (Widerstandsfarben ausgeben) ausgefuehrt..\n");
 			Teilaufgabe_3();
-			break; 
+			break;
+		case 4:
+			printf("Teilaufgabe 4 (String in uInt konvertieren) ausgefuehrt..\n");
+			Teilaufgabe_4();
+			break;
 		default:
 			printf("Ungueltige Eingabe, erneut versuchen:\n");
 			break;
