@@ -15,11 +15,11 @@ int main()
 		switch (inputTask) {
 
 		case 1:
-			printf("Teilaufgabe 1 (Enums für Farben) wird ausgefuehrt..\n");
+			printf("Teilaufgabe 1 (Enums fuer Farben) wird ausgefuehrt..\n");
 			Teilaufgabe_1();
 			break;
 		case 2:
-			printf("Teilaufgabe 2 (Struct erstellen) wird ausgefuehrt..\n");
+			printf("Teilaufgabe 2 (Struct fuer einen Vektor erstellen) wird ausgefuehrt..\n");
 			Teilaufgabe_2();
 			break;
 		default:
