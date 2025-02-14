@@ -64,7 +64,7 @@ void Teilaufgabe_2() {
 void Teilaufgabe_3() {
 	char input[LENGTH_CHAR_ARRAY];
 	char output[LENGTH_CHAR_ARRAY];
-	getMatrInputChars(input);
+	getMatrikelInput(input);
 	umwandeln(input, output);
 	printOutput(output);
 
@@ -79,7 +79,7 @@ void Teilaufgabe_3() {
 /// </summary>
 void Teilaufgabe_4() {
 	char input[LENGTH_CHAR_ARRAY];
-	getMatrInputChars(input);
+	getMatrikelInput(input);
 	unsigned int output = 0;
 	if (convertStringToUInt(input, &output)) {
 		printf("Die Konvertierung war erfolgreich. Die Zahl lautet: %d\n", output);

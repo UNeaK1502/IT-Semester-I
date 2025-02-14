@@ -1,4 +1,4 @@
 #pragma once
 void strreverse(char* s);
-void getMatrInputChars(char input[]);
+void getMatrikelInput(char input[]);
 void printOutput(char output[]);

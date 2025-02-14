@@ -9,7 +9,7 @@
 
 int matrikelnr(char* nr, int maxlen);
 int num2text(char* text, int maxlen, int num);
-void getMatrInputChars(char input[]);
+void getMatrikelInput(char input[]);
 void printOutput(char output[]);
 //Extra
 //int smallnum2text(char* text, int maxlen, int num,int digits);	//Sonderfall eine Million, ein Tausend
@@ -34,7 +34,7 @@ int num2text(char* text, int maxlen, int num) {
 
 int matrikelnr(char *nr, int maxlen) {
 	char helper[100];
-	getMatrInputChars(helper);		//Matrikelnummer einlesen
+	getMatrikelInput(helper);		//Matrikelnummer einlesen
 	if (strlen(helper) < maxlen) {
 		//Wenn eingegebene Matrikelnummer kleiner als 8 ist, dann Matrikelnr schreiben und 0 zurückgeben
 		nr = helper;
@@ -44,7 +44,7 @@ int matrikelnr(char *nr, int maxlen) {
 		return -1;
 	}
 }
-void getMatrInputChars(char input[]) {
+void getMatrikelInput(char input[]) {
 	printf("Bitte geben Sie einen String ein:\t");
 	scanf_s("%s", input, MATRIKELNR_LEN);				//Als Buffergroesse wird die maximal Länge vom Char-Array genommen
 }
