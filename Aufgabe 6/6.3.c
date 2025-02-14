@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define LENGTH_CHAR_ARRAY	100
 
-void getInputChars(char input[]) {
+void getMatrInputChars(char input[]) {
 	printf("Bitte geben Sie einen String ein:\t");
 	scanf_s("%s", input, LENGTH_CHAR_ARRAY);				//Als Buffergroesse wird die maximal Länge vom Char-Array genommen
 }

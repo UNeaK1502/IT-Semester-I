@@ -8,13 +8,13 @@
 
 void Teilaufgabe_1() {
 	char array[LENGTH_CHAR_ARRAY];
-	getInputChars(array);
+	getMatrInputChars(array);
 	strreverse(array);
 	printOutput(array);
 }
 void Teilaufgabe_2() {
 	char array[LENGTH_CHAR_ARRAY];
-	getInputChars(array);
+	getMatrInputChars(array);
 	if (checkPalindrome(array)) {
 		printf("%s ist ein Palindrom", array);
 	}
