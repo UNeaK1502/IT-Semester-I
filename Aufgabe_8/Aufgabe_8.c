@@ -9,7 +9,7 @@
 
 void (*vectorFunctions[METHOD_COUNT])(vec2_t*, vec2_t*) = {
 	(void (*)(vec2_t*, vec2_t*)) getVectorInput,     // Achtung: Cast notwendig wegen unterschiedlicher Signatur
-	(void (*)(vec2_t*, vec2_t*)) printVec	tor,
+	(void (*)(vec2_t*, vec2_t*)) printVector,
 	(void (*)(vec2_t*, vec2_t*)) getScalarProduct,
 	(void (*)(vec2_t*, vec2_t*)) mathOpsVectors,
 	(void (*)(vec2_t*, vec2_t*)) getVectorAbsolut,
