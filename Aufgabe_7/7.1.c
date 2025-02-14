@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "7.1.h"
 
 #define LENGTH_CHAR_ARRAY 100
 
@@ -14,7 +15,7 @@ void strreverse(char* s) {
 	{
 		if (s[i] == '\0') break;
 		counter++;							//Länge von String ermitteln
-	}
+	}			//Alternativ strlen verwenden
 	char copy[LENGTH_CHAR_ARRAY];
 	memcpy(copy, s, LENGTH_CHAR_ARRAY);		//Inhalt kopieren
 

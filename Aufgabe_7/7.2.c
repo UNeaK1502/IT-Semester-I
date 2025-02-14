@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include "7.1.h"
+#include <string.h>
+#include <ctype.h>
 #define LENGTH_CHAR_ARRAY 100
 
 int checkPalindrome(char* array) {
@@ -10,7 +11,9 @@ int checkPalindrome(char* array) {
 
 	for (size_t i = 0; i < LENGTH_CHAR_ARRAY; i++)
 	{
-		if (reversedArray[i] != array[i]) return 0;	//Wenn ein Zeichen nicht übereinstimmt, dann ist es kein Palindrom
+		if (tolower(reversedArray[i]) != tolower(array[i])) {
+			return 0;	//Wenn ein Zeichen nicht übereinstimmt, dann ist es kein Palindrom
+		}
 	}
 	return 1;
 }

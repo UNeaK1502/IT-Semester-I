@@ -7,6 +7,14 @@
 #define M_PI 3.14159265358979323846
 #endif
 
+void (*vectorFunctions[METHOD_COUNT])(vec2_t*, vec2_t*) = {
+	(void (*)(vec2_t*, vec2_t*)) getVectorInput,     // Achtung: Cast notwendig wegen unterschiedlicher Signatur
+	(void (*)(vec2_t*, vec2_t*)) printVec	tor,
+	(void (*)(vec2_t*, vec2_t*)) getScalarProduct,
+	(void (*)(vec2_t*, vec2_t*)) mathOpsVectors,
+	(void (*)(vec2_t*, vec2_t*)) getVectorAbsolut,
+	(void (*)(vec2_t*, vec2_t*)) calculateVectorAngle
+};
 void Teilaufgabe_1() {
 	//Farben Rot, Lila, Gelb, Blau und Grau. Implementiere
 	// eine Funktion, die eine Farbe(enum) in eine dazugeh¨orige Zeichenkette(string, z.B.”Rot“) umwandelt,
@@ -27,6 +35,19 @@ void Teilaufgabe_1() {
 	printf("Farbe: %s\n", colorStr2);
 }
 color_t color_from_string(const char* s) {
+	//Alternati Lookup Tabelle mit Struct
+	//struct colorLookup {
+	//	color_t color;
+	//	const char* colorStr;
+	//};
+	//colorLookup colorLookupTable[] = {
+	//	{Rot,"Rot"},
+	//	{Lila,"Lila"},
+	//	{Gelb,"Gelb"},
+	//	{Blau,"Blau"},
+	//	{Grau,"Grau"}
+	//};
+
 	if (strcmp(s, "Rot") == 0) {
 		return Rot;
 	}
@@ -70,11 +91,9 @@ void Teilaufgabe_2() {
 	getVectorInput(&vector2);
 	printf("Welche Operation soll durchgeführt werden?\n\nSkalarprodukt[0]\nBetrag beider Vektoren[1]\nSumme/Differenz[2]\n");
 	//Array/Struct mit Funktionen
-	getScalarProduct(vector1, vector2);
-	mathOpsVectors(vector1, vector2);
-	calculateVectorAngle(vector1, vector2);
-	getVectorAbsolut(vector1);
-	getVectorAbsolut(vector2);
+	int eingabe = 0;
+	scanf_s("%d", &eingabe);
+	(*vectorFunctions[eingabe])(&vector1, &vector2);
 }
 //Methoden in einem Array zusammen fassen
 
