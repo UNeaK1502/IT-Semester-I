@@ -14,12 +14,17 @@ void printOutput(char output[]);
 //Extra
 //int smallnum2text(char* text, int maxlen, int num,int digits);	//Sonderfall eine Million, ein Tausend
 
-int main(){	
+int main()
+{	
 	char matrikelNummer[MATRIKELNR_LEN];
 	int sdfs = matrikelnr(matrikelNummer, MATRIKELNR_LEN);
 
 	printOutput(matrikelNummer);
 
+	/*
+	Getinput
+	char ausgabe;
+		num2text(ausgabe, 5, 1234);*/
 	return 0; 
 }
 int num2text(char* text, int maxlen, int num) {

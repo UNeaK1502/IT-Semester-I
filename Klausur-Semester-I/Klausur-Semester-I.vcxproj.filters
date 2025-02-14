@@ -15,8 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Klausur-Semester-I.cpp">
+    <ClCompile Include="Klausur-Semester-I.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\Downloads\Programmieraufgabe_GI1_TEI24GR2.pdf" />
   </ItemGroup>
 </Project>
