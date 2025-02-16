@@ -42,8 +42,8 @@ void getInputChars(char* input, int maxlen);
 int main() {
 	char outputText[MAX_STRING_LEN] = { 0 };
 	int input = -1;
-	//while (1) {						//Zum testen mehrere eingaben, andere While schleife
-	while (input < 0) {
+	while (1) {						//Zum testen mehrere eingaben, andere While schleife
+	//while (input < 0) {
 		printf("Zahl eingeben: ");
 		scanf_s("%d", &input);
 
@@ -55,7 +55,7 @@ int main() {
 			printf("%s\nPress any key to continue . . .", outputText);
 		}
 		//Text zurücksetzen
-		memset(outputText, 0, MAX_STRING_LEN);
+		//memset(outputText, 0, MAX_STRING_LEN);
 	}
 	return 0;
 }
