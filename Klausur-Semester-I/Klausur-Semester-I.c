@@ -22,7 +22,7 @@ typedef enum {
 	hundertmillionen = 1,
 	zehnmillionen = 2,
 	millionen = 3,
-	hundertausend = 4,
+	hunderttausend = 4,
 	zehntausend = 5,
 	tausend = 6,
 	hundert = 7,
@@ -111,12 +111,25 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 	}
 
 	//Milliarden ausgeben
-	if (zahlenArray[milliarden] > 0) {
+	if (digits > 9) {
+		if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[milliarden]]) >= maxlen) return -1;
+		strcat_s(text, maxlen, woerter.neunzehn[zahlenArray[milliarden]]);
+		if (zahlenArray[milliarden] == 1) {
+			//Gendern wenn 1 Milliarde
+			if (strlen(text) + strlen("e") >= maxlen) return -1;
+			strcat_s(text, maxlen, "e");
+		}
+		//Postfix -milliarde hinzufügen
 		if (strlen(text) + strlen(woerter.potenzen[3]) >= maxlen) return -1;
 		strcat_s(text, maxlen, woerter.potenzen[3]);
+		if (zahlenArray[milliarden] > 1) {
+			//Pluralform anhängen
+			if (strlen(text) + strlen("n") >= maxlen) return -1;
+			strcat_s(text, maxlen, "n");
+		}
 	}
 	//Millionen - Zahlenbereich 1.000.000-999.000.000
-	if (zahlenArray[hundertmillionen] != 0 || zahlenArray[zehnmillionen] != 0 || zahlenArray[millionen] != 0) {
+	if (zahlenArray[hundertmillionen] != 0|| zahlenArray[zehnmillionen]!=0 || zahlenArray[millionen]!= 0) {
 		if (zahlenArray[hundertmillionen] != 0) {
 			//Zahlenbereich 100.000.000-900.000.000
 			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[hundertmillionen]]) + strlen(woerter.potenzen[0]) >= maxlen) return -1;
@@ -175,18 +188,18 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 		}
 	}
 	//Tausender - Zahlenbereich 1000-999000 - passt 101000 das S fehlt
-	if (zahlenArray[hundertausend] != 0 || zahlenArray[zehntausend] != 0 || zahlenArray[tausend] != 0) {
-		if (zahlenArray[hundertausend] != 0) {
+	if (zahlenArray[hunderttausend] != 0 || zahlenArray[zehntausend] != 0 || zahlenArray[tausend] != 0) {
+		if (zahlenArray[hunderttausend] != 0) {
 			//Zahlenbereich 100000-900000 - passt
-			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[hundertausend]]) + strlen(woerter.potenzen[0]) >= maxlen) return -1;
-			strcat_s(text, maxlen, woerter.neunzehn[zahlenArray[hundertausend]]);	//Wert des Hundertausenders anheften
+			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[hunderttausend]]) + strlen(woerter.potenzen[0]) >= maxlen) return -1;
+			strcat_s(text, maxlen, woerter.neunzehn[zahlenArray[hunderttausend]]);	//Wert des Hundertausenders anheften
 			strcat_s(text, maxlen, woerter.potenzen[0]);							//Hundert anheften
 		}
 		if (zahlenArray[zehntausend] == 0 && zahlenArray[tausend] != 0) {
 			//Zahlenbereich 1000-9000		
 			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[tausend]]) >= maxlen) return -1;
 			strcat_s(text, maxlen, woerter.neunzehn[zahlenArray[tausend]]);
-			if (zahlenArray[hundertausend] != 0 && zahlenArray[tausend]==1) {
+			if (zahlenArray[hunderttausend] != 0 && zahlenArray[tausend]==1) {
 				//S anhängen wenn X01000
 				if (strlen(text) + strlen("s") >= maxlen) return -1;
 				strcat_s(text, maxlen, "s");
