@@ -4,7 +4,7 @@
 
 #define MATRIKELNR_LEN		8
 #define MAX_INPUT_LEN		10
-#define MAX_STRING_LEN		40
+#define MAX_STRING_LEN		10
 
 typedef struct {
 	const char* neunzehn[20];
@@ -42,7 +42,7 @@ void getInputChars(char* input, int maxlen);
 int main() {
 	char outputText[MAX_STRING_LEN] = { 0 };
 	int input = -1;
-	//while (1) {
+	//while (1) {						//Zum testen mehrere eingaben, andere While schleife
 	while (input < 0) {
 		printf("Zahl eingeben: ");
 		scanf_s("%d", &input);
@@ -64,7 +64,6 @@ int num2text(char* text, int maxlen, int num) {
 	//Zahl in Array umwandeln
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
 	int noDigits = 0;
-
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
 	noDigits = num ? 0 : 1;			//Wenn num 0 ist (false), dann gibt es eine Digit. Wenn num nicht 0 ist, dann werden die Stellen über den nächsten Loop ermittelt
 
