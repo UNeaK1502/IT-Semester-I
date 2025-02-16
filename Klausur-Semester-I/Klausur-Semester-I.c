@@ -2,9 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define MATRIKELNR_LEN		8
-#define MAX_INPUT_LEN		10
-#define MAX_STRING_LEN		100
+#define MATRIKELNR_LEN		8			//Länge der Matrikelnummer
+#define MAX_INPUT_LEN		10			//Maximale Länge der Eingabe
+#define MAX_STRING_LEN		100			//String der die Textlänge begrenzt
 
 typedef struct {
 	const char* neunzehn[20];
@@ -13,7 +13,7 @@ typedef struct {
 }zahlenWoerter;
 zahlenWoerter woerter = {
 	.neunzehn = { "null","ein", "zwei", "drei", "vier", "fuenf", "sechs", "sieben", "acht", "neun" ,"zehn",
-	"elf", "zwoelf", "dreizehn", "vierzehn", "fuenfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn" },
+	"elf", "zwoelf", "dreizehn", "vierzehn", "fuenfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn" },								//die ersten 20 Zahlen weil 6/7 mit 16/17 & 60/70 blöd sind
 	.zehner = {"placeholder","placeholder","zwanzig", "dreissig", "vierzig", "fuenfzig", "sechzig", "siebzig", "achtzig", "neunzig" },	//Platzhalter für 0 und 1
 	.potenzen = { "hundert", "tausend", "million", "milliarde"},
 };
@@ -28,37 +28,38 @@ typedef enum {
 	hundert = 7,
 	zehn = 8,
 	einer = 9
-}zahlen_index;
+}zahlen_index;		//Enum zur Übersichtlichkeit
+
+//Methoden Deklaration
 
 int matrikelnr(char* nr, int maxlen);
 int num2text(char* text, int maxlen, int num);
-void printOutput(char output[]);
-void getInputChars(char* input, int maxlen);
 //Extra
-int smallnum2text(char* text, int maxlen, int num, int digits);	//Sonderfall eine Million, ein Tausend
+int smallnum2text(char* text, int maxlen, int num, int digits);
 
 //Hauptprogramm
 
 int main() {
 	char outputText[MAX_STRING_LEN] = { 0 };
-	int input = -1;
-	while (1) {						//Zum testen mehrere eingaben, andere While schleife
-		//while (input < 0) {
+	int input = NULL;
+	int watchdog = 0;		// 0 = fehlerhafte Eingabe, 1 = richtige Eingabe
+	while (watchdog == 0) {
 		printf("Zahl eingeben: ");
-		scanf_s("%d", &input);
-
-		if (num2text(outputText, MAX_STRING_LEN, input) == -1) {
-			printf("Die Umwandlung war fehlerhaft.\n");
+		watchdog = scanf_s("%d", &input);
+		if (watchdog == 0) {			
+			while (getchar() != '\n');	//Buffer leeren, um Endlosschleife zu verhindern
+		} else {
+			if (num2text(outputText, MAX_STRING_LEN, input) == -1) {
+				printf("Die Umwandlung war fehlerhaft.\n");				//Fehler wenn Textlänge zu lang für MAX_STRING_LEN ist
+			} else {
+				// Text printen
+				printf("%s\nPress any key to continue . . .", outputText);
+			}
 		}
-		else {
-			//Text printen
-			printf("%s\nPress any key to continue . . .", outputText);
-		}
-		//Text zurücksetzen
-		memset(outputText, 0, MAX_STRING_LEN);
 	}
 	return 0;
 }
+
 int num2text(char* text, int maxlen, int num) {
 	//Zahl in Array umwandeln
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
@@ -83,12 +84,10 @@ int num2text(char* text, int maxlen, int num) {
 /// <param name="digits">stellen der Zahl</param>
 /// <returns></returns>
 int smallnum2text(char* text, int maxlen, int num, int digits) {
-	//Zahl in Array umwandeln
+	//Zahl in Array umwandeln, digits werden nicht benötigt
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
 	int noDigits = 0;				//Anzahl der Digits
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
-	noDigits = num ? 0 : 1;			//Wenn num 0 ist (false), dann gibt es eine Digit. Wenn num nicht 0 ist, dann werden die Stellen über den nächsten Loop ermittelt
-
 	//Edge - Cases
 	if (num == 0) {
 		if (strlen(text) + strlen("null") >= maxlen) return -1;
@@ -99,11 +98,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 		strcat_s(text, maxlen, "minus ");
 		num *= -1;
 	}
-	while (backup != 0) {
 
-		backup /= 10;
-		noDigits++;
-	}
 	backup = num;			//num für Berechnungen zwischenspeichern
 	for (int i = MAX_INPUT_LEN - 1; i >= 0; i--) {
 		zahlenArray[i] = backup % 10;
@@ -118,6 +113,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 			//Gendern wenn 1 Milliarde
 			if (strlen(text) + strlen("e") >= maxlen) return -1;
 			strcat_s(text, maxlen, "e");
+			//Sonderfall X01.XXX.XXX.XXX muss nicht behandelt werden, da eine Zahl größer 4.3 Mrd mit Int nicht möglich ist
 		}
 		//Postfix -milliarde hinzufügen
 		if (strlen(text) + strlen(woerter.potenzen[3]) >= maxlen) return -1;
@@ -129,7 +125,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 		}
 	}
 	//Millionen - Zahlenbereich 1.000.000-999.000.000
-	if (zahlenArray[hundertmillionen] != 0|| zahlenArray[zehnmillionen]!=0 || zahlenArray[millionen]!= 0) {
+	if (zahlenArray[hundertmillionen] != 0 || zahlenArray[zehnmillionen] != 0 || zahlenArray[millionen] != 0) {
 		if (zahlenArray[hundertmillionen] != 0) {
 			//Zahlenbereich 100.000.000-900.000.000
 			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[hundertmillionen]]) + strlen(woerter.potenzen[0]) >= maxlen) return -1;
@@ -199,7 +195,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 			//Zahlenbereich 1000-9000		
 			if (strlen(text) + strlen(woerter.neunzehn[zahlenArray[tausend]]) >= maxlen) return -1;
 			strcat_s(text, maxlen, woerter.neunzehn[zahlenArray[tausend]]);
-			if (zahlenArray[hunderttausend] != 0 && zahlenArray[tausend]==1) {
+			if (zahlenArray[hunderttausend] != 0 && zahlenArray[tausend] == 1) {
 				//S anhängen wenn X01000
 				if (strlen(text) + strlen("s") >= maxlen) return -1;
 				strcat_s(text, maxlen, "s");
@@ -309,10 +305,4 @@ int matrikelnr(char* nr, int maxlen) {
 		printf("Fehler: Matrikelnummer zu lang\n");
 		return -1;
 	}
-}
-void getInputChars(char* input, int maxlen) {
-	scanf_s("%s", input, maxlen);
-}
-void printOutput(char output[]) {
-	printf("%s", output);
 }
