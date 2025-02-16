@@ -61,7 +61,6 @@ int main() {
 }
 
 int num2text(char* text, int maxlen, int num) {
-	//Zahl in Array umwandeln
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
 	int noDigits = 0;				//Anzahl der Digits
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
@@ -71,7 +70,6 @@ int num2text(char* text, int maxlen, int num) {
 		backup /= 10;
 		noDigits++;
 	}
-	//Tausend ausgeben
 	if (smallnum2text(text, maxlen, num, noDigits) == -1) return -1;	//Zahlen von -9999 bis 9999 ausgeben
 	else return 0;
 }
@@ -84,9 +82,8 @@ int num2text(char* text, int maxlen, int num) {
 /// <param name="digits">stellen der Zahl</param>
 /// <returns></returns>
 int smallnum2text(char* text, int maxlen, int num, int digits) {
-	//Zahl in Array umwandeln, digits werden nicht benötigt
+	
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
-	int noDigits = 0;				//Anzahl der Digits
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
 	//Edge - Cases
 	if (num == 0) {
@@ -100,6 +97,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 	}
 
 	backup = num;			//num für Berechnungen zwischenspeichern
+	//Zahl in Array umwandeln
 	for (int i = MAX_INPUT_LEN - 1; i >= 0; i--) {
 		zahlenArray[i] = backup % 10;
 		backup /= 10;
@@ -113,7 +111,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 			//Gendern wenn 1 Milliarde
 			if (strlen(text) + strlen("e") >= maxlen) return -1;
 			strcat_s(text, maxlen, "e");
-			//Sonderfall X01.XXX.XXX.XXX muss nicht behandelt werden, da eine Zahl größer 4.3 Mrd mit Int nicht möglich ist
+			//Sonderfall X01.XXX.XXX.XXX muss nicht behandelt werden, da eine Zahl größer 4.3 Mrd mit uInt nicht möglich ist
 		}
 		//Postfix -milliarde hinzufügen
 		if (strlen(text) + strlen(woerter.potenzen[3]) >= maxlen) return -1;
@@ -183,7 +181,8 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 			strcat_s(text, maxlen, "en");					//Pluralform anhängen
 		}
 	}
-	//Tausender - Zahlenbereich 1000-999000 - passt 101000 das S fehlt
+
+	//Tausender - Zahlenbereich 1000-999000
 	if (zahlenArray[hunderttausend] != 0 || zahlenArray[zehntausend] != 0 || zahlenArray[tausend] != 0) {
 		if (zahlenArray[hunderttausend] != 0) {
 			//Zahlenbereich 100000-900000 - passt
