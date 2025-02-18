@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 
 #define MATRIKELNR_LEN		8			//Länge der Matrikelnummer
 #define MAX_INPUT_LEN		10			//Maximale Länge der Eingabe
@@ -89,13 +90,12 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
-	int number = (int)0b11111111111111111111111111111111;
 	//Edge - Cases
 	if (num == 0) {
 		if (checkStrCat(text, maxlen, woerter.neunzehn[0]) == -1) return -1;
 	}
-	else if (num == number) {
-		//Spezialfall -2.147.483.648
+	else if (num == INT_MIN) {		
+		if (checkStrCat(text, maxlen, "minus ") == -1) return -1;
 		if (checkStrCat(text, maxlen, "zweimilliardeneinhundertsiebenundvierzigmillionenvierhundertdreiundachtzigtausendsechshundertachtundvierzig") == -1) return -1;
 		return 0;
 	}

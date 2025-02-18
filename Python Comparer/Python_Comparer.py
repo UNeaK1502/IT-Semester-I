@@ -36,6 +36,6 @@ def compare_exe_outputs(exe1_path, exe2_path, start, end, step):
     print("Comparison results saved to comparison_results.xlsx")
 
 if __name__ == "__main__":
-    exe1_path = r"C:\Users\UNeaK\Documents\Visual Studio 2022\repos\IT-Semester-I\x64\Release\Klausur-Semester-I.exe"
-    exe2_path = r"C:\Users\UNeaK\Downloads\num2textso.exe"      
-    compare_exe_outputs(exe1_path, exe2_path, -1000,1000,1)
+    exe1_path = r"C:\Users\Philip\Documents\Visual Studio 2022\Repos\IT-Semester-I\x64\Release\Klausur-Semester-I.exe"#"C:\Users\UNeaK\Documents\Visual Studio 2022\repos\IT-Semester-I\x64\Release\Klausur-Semester-I.exe"      #Pfad zu Klausur-Semester-I.exe
+    exe2_path = r"E:\Downloads\num2textso.exe"#"C:\Users\UNeaK\Downloads\num2textso.exe"      #Pfad zu num2textso.exe
+    compare_exe_outputs(exe1_path, exe2_path, -2147483648 ,-2147483600 ,1)      #kleinste zu groesste Zahl
