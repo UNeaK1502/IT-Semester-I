@@ -4,7 +4,7 @@
 
 #define MATRIKELNR_LEN		8			//Länge der Matrikelnummer
 #define MAX_INPUT_LEN		10			//Maximale Länge der Eingabe
-#define MAX_STRING_LEN		90			//String der die Textlänge begrenzt
+#define MAX_STRING_LEN		150			//String der die Textlänge begrenzt
 
 typedef struct {
 	const char* neunzehn[20];
@@ -89,9 +89,15 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 
 	int zahlenArray[MAX_INPUT_LEN] = { 0 };
 	int backup = num;				//Wird benötigt, um die Zahl zu sichern
+	int number = (int)0b11111111111111111111111111111111;
 	//Edge - Cases
 	if (num == 0) {
 		if (checkStrCat(text, maxlen, woerter.neunzehn[0]) == -1) return -1;
+	}
+	else if (num == number) {
+		//Spezialfall -2.147.483.648
+		if (checkStrCat(text, maxlen, "zweimilliardeneinhundertsiebenundvierzigmillionenvierhundertdreiundachtzigtausendsechshundertachtundvierzig") == -1) return -1;
+		return 0;
 	}
 	else if (num < 0) {
 		if (checkStrCat(text, maxlen, "minus ") == -1) return -1;
