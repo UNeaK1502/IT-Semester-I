@@ -56,7 +56,8 @@ int main() {
 			}
 			else {
 				// Text printen
-				printf("%s\nPress any key to continue . . .", outputText);
+				printf("%s\n", outputText);//Press any key to continue . . .", outputText);
+				//getch();				//warten bis eine Taste gedrückt wird
 			}
 		}
 	}
