@@ -42,7 +42,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits);
 //Hauptprogramm
 
 int main() {
-	char outputText[MAX_STRING_LEN] = { 0 };
+	char outputText[MAX_STRING_LEN + 1] = { 0 };				//+1 um Platz für das Nullbyte zu haben (Binär 0)
 	int input = NULL;
 	int watchdog = 0;		// 0 = fehlerhafte Eingabe, 1 = richtige Eingabe
 	while (watchdog == 0) {
@@ -52,13 +52,13 @@ int main() {
 			while (getchar() != '\n');	//Buffer leeren, um Endlosschleife zu verhindern
 		}
 		else {
-			if (num2text(outputText, MAX_STRING_LEN, input) == -1) {
+			if (num2text(outputText, MAX_STRING_LEN+1, input) == -1) {	//+1 um Platz für das Nullbyte zu haben (Binär 0)
 				printf("Die Umwandlung war fehlerhaft.\n");				//Fehler wenn Textlänge zu lang für MAX_STRING_LEN ist
 			}
 			else {
 				// Text printen
 				printf("%s\n", outputText);//Press any key to continue . . .", outputText);
-				//getch();				//warten bis eine Taste gedrückt wird
+				getch();				//warten bis eine Taste gedrückt wird
 			}
 		}
 	}
@@ -238,7 +238,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 		}
 	}
 	else {
-		//Ansonsten Zehner und Einer ausgeben
+		//Ansonsten Einer ausgeben
 		if (zahlenArray[zehn] == 0 && zahlenArray[einer] != 0 && num > 100) {
 			//X01-x09
 			if (checkStrCat(text, maxlen, woerter.neunzehn[zahlenArray[einer]]) == -1) return -1;
@@ -266,7 +266,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 /// <returns>-1 Wenn String zu lang ist, 0 Wenn es gepasst hat</returns>
 int checkStrCat(char* text, int maxlen, const char* str) {
 	if (strlen(text) + strlen(str) >= maxlen) return -1;
-	strcat_s(text, maxlen, str);
+	strcat_s(text, maxlen+1, str);
 	return 0;
 }
 /// <summary>
