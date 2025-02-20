@@ -3,9 +3,11 @@
 #include <stdlib.h>
 #include <limits.h>
 
+//Visual Studio ver 17.13.0
+
 #define MATRIKELNR_LEN		8			//Länge der Matrikelnummer
 #define MAX_INPUT_LEN		10			//Maximale Länge der Eingabe
-#define MAX_STRING_LEN		150			//String der die Textlänge begrenzt
+#define MAX_STRING_LEN		120			//String der die Textlänge begrenzt
 
 typedef struct {
 	const char* neunzehn[20];
@@ -52,12 +54,12 @@ int main() {
 			while (getchar() != '\n');	//Buffer leeren, um Endlosschleife zu verhindern
 		}
 		else {
-			if (num2text(outputText, MAX_STRING_LEN+1, input) == -1) {	//+1 um Platz für das Nullbyte zu haben (Binär 0)
+			if (num2text(outputText, MAX_STRING_LEN + 1, input) == -1) {	//+1 um Platz für das Nullbyte zu haben (Binär 0)
 				printf("Die Umwandlung war fehlerhaft.\n");				//Fehler wenn Textlänge zu lang für MAX_STRING_LEN ist
 			}
 			else {
 				// Text printen
-				printf("%s\n", outputText);//Press any key to continue . . .", outputText);
+				printf("%s\nPress any key to continue . . .", outputText);
 				getch();				//warten bis eine Taste gedrückt wird
 			}
 		}
@@ -95,6 +97,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 		if (checkStrCat(text, maxlen, woerter.neunzehn[0]) == -1) return -1;
 	}
 	else if (num == INT_MIN) {		
+		//Kleinste Zahl abfangen. -2147483648. Fehler wenn INT_MIN * -1 gemacht wird
 		if (checkStrCat(text, maxlen, "minus ") == -1) return -1;
 		if (checkStrCat(text, maxlen, "zweimilliardeneinhundertsiebenundvierzigmillionenvierhundertdreiundachtzigtausendsechshundertachtundvierzig") == -1) return -1;
 		return 0;
@@ -266,7 +269,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 /// <returns>-1 Wenn String zu lang ist, 0 Wenn es gepasst hat</returns>
 int checkStrCat(char* text, int maxlen, const char* str) {
 	if (strlen(text) + strlen(str) >= maxlen) return -1;
-	strcat_s(text, maxlen+1, str);
+	strcat_s(text, maxlen+1, str);			//Binäre 0
 	return 0;
 }
 /// <summary>

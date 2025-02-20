@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Klausur-Semester-I.c">
+    <ClCompile Include="main_5635349.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
