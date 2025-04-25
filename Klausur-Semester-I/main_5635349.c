@@ -80,6 +80,23 @@ int num2text(char* text, int maxlen, int num) {
 	if (smallnum2text(text, maxlen, num, noDigits) == -1) return -1;	//Zahlen von -2.1Mrd bis +2.1 Mrd ausgeben
 	else return 0;
 }
+
+typedef struct {
+	char straﬂenname[31];
+	int hausnummer;
+	int postleitzahl;
+	char stadtname[26];
+
+} adresse_t;
+
+typedef struct {
+	char personenname[31];
+	adresse_t adresse;
+	int alter;
+
+} person_t;
+
+person_t person = { "bla", {"strasse",15,73240, "Stadt"},15 };
 /// <summary>
 /// 9999 bis -9999 ausgeben
 /// </summary>
@@ -96,7 +113,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 	if (num == 0) {
 		if (checkStrCat(text, maxlen, woerter.neunzehn[0]) == -1) return -1;
 	}
-	else if (num == INT_MIN) {		
+	else if (num == INT_MIN) {
 		//Kleinste Zahl abfangen. -2147483648. Fehler wenn INT_MIN * -1 gemacht wird
 		if (checkStrCat(text, maxlen, "minus ") == -1) return -1;
 		if (checkStrCat(text, maxlen, "zweimilliardeneinhundertsiebenundvierzigmillionenvierhundertdreiundachtzigtausendsechshundertachtundvierzig") == -1) return -1;
@@ -155,7 +172,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 			//Zahlenbereich 20.000.000-99.000.000
 			if (zahlenArray[millionen] == 0) {
 				//20m,30m usw abfangen
-				if (checkStrCat(text, maxlen, woerter.zehner[zahlenArray[zehnmillionen]]) == -1) return -1;	
+				if (checkStrCat(text, maxlen, woerter.zehner[zahlenArray[zehnmillionen]]) == -1) return -1;
 			}
 			else if (zahlenArray[millionen] != 0)
 			{
@@ -269,7 +286,7 @@ int smallnum2text(char* text, int maxlen, int num, int digits) {
 /// <returns>-1 Wenn String zu lang ist, 0 Wenn es gepasst hat</returns>
 int checkStrCat(char* text, int maxlen, const char* str) {
 	if (strlen(text) + strlen(str) >= maxlen) return -1;
-	strcat_s(text, maxlen+1, str);			//Bin‰re 0
+	strcat_s(text, maxlen + 1, str);			//Bin‰re 0
 	return 0;
 }
 /// <summary>

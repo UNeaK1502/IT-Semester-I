@@ -26,6 +26,8 @@ def compare_exe_outputs(exe1_path, exe2_path, start, end, step):
         last_word2 = get_last_word(output2)
         output1 = last_word1
         output2 = last_word2
+        print(last_word1)
+        print(last_word2)
         difference = last_word1 != last_word2
         ws.append([i, output1, output2, difference])
         for cell in ws.iter_rows(min_row=ws.max_row, max_row=ws.max_row, min_col=1, max_col=4):
@@ -40,4 +42,4 @@ if __name__ == "__main__":
     exe2_path = r"C:\Users\UNeaK\Downloads\num2textso.exe"
     exe1_path = r"C:\Users\UNeaK\Downloads\num2text.exe"#"C:\Users\UNeaK\Documents\Visual Studio 2022\repos\IT-Semester-I\x64\Release\Klausur-Semester-I.exe"      #Pfad zu Klausur-Semester-I.exe
     #exe2_path = r"E:\Downloads\num2textso.exe"      #Pfad zu num2textso.exe
-    compare_exe_outputs(exe1_path, exe2_path, 2147483600,2147483648,1)      #kleinste zu groesste Zahl
+    compare_exe_outputs(exe1_path, exe2_path, 10000,11000,1)      #kleinste zu groesste Zahl
